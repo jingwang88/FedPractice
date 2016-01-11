@@ -1,0 +1,78 @@
+/*-------------------------------------------
+Author: Rowan
+Email: wj154419@163.com
+content: 两种居中方法
+-------------------------------------------*/
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<title>百度学院1</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.test {
+			width: 960px;
+			height: 500px;
+			background-color: red;
+			margin: 0 auto;
+		}
+
+		// 通过绝对定位到50%，然后设置负半个div宽度，这样就居中了。
+		.test {
+			width: 960px;
+			height: 500px;
+			background-color: red;
+			position: absolute;
+			left: 50%;
+			margin-left: -480px;	
+		}
+		#container {
+			background-color: #fff;
+		}
+		.b1, .b2, .b3, .b4 {
+			display: block;
+			height: 1px;
+			background-color: #000;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+		}
+		.b1 {
+			margin: 0 5px;
+		}	
+		.b2 {
+			margin: 0 3px;
+		}
+		.b3 {
+			margin: 0 2px;
+		}
+		.b4 {
+			margin: 0 0;
+		}
+		#content {
+			color: #fff;
+			font-size: 2.5em;
+			background-color: #000;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+			word-spacing: 15px;
+			text-align: center;
+			margin: 0;
+		}
+		#content h1, #content h2 {
+			margin: 0;
+			padding: 10px 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="test"></div>
+	// 通过div+css写成圆边框；另外可以通过border-radius轻松设置完成。
+	<div id="container">
+		<div><b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b></div>
+		<div id="content">
+			<h1>我是测试圆边框</h1>
+			<h2>我是测试圆边框</h2>
+		</div>
+		<div><b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b></div>
+	</div>
+</body>
+</html>
