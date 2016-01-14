@@ -1,0 +1,65 @@
+/* -------------------------------------------
+Email: wj154419@163.com
+content: 双飞翼布局
+DATE: 2016/1/14 22:07
+------------------------------------------- */
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<title>百度学院6-双飞翼布局</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#page {
+			font-size: 20px;
+			color: white;
+		}
+		#hd {
+			width: 100%;
+			height: 50px;
+			border: 1px solid black;
+			background-color: gray;
+		}
+		.inner-main {
+			margin: 0 230px 0 190px;
+		}
+		.main,
+		.sub,
+		.extra {
+			float: left;
+			min-height: 100px;
+		}
+		.main {
+			width: 100%;
+			background-color: red;
+		}
+		.sub {
+			width: 190px;
+			margin-left: -100%;
+			background-color: blue;
+		}
+		.extra {
+			width: 230px;
+			margin-left: -230px;
+			background-color: orange;
+		}
+		#ft {
+			width: 100%;
+			height: 50px;
+			border: 1px solid black;
+			clear: both;
+			background-color: gray;
+		}
+	</style>
+</head>
+<body>
+	<div id="page">    
+      <div id="hd">header</div>    
+         <div id="bd">        
+              <div class="main"><div class="inner-main">main</div></div>        
+              <div class="sub">sub</div>        
+              <div class="extra">extra</div>    
+         </div>   
+      <div id="ft">footer</div>
+  	</div>
+</body>
+</html>
