@@ -1,0 +1,13 @@
+1. DOM: 浏览器将HTML解析成树形数据结构；
+2. CSSOM: 浏览器将CSS解析成树形数据结构；
+3. DOM 和 CSSOM都是以Bytes -- characters -- tokens -- nodes -- object model 生成最终数据;
+4. DOM 和 CSSOM 合并生成render tree（display：none 会删除节点，而visibility： hidden 会;
+具体渲染过程如下： 
+1. create/update DOM And request css/image/js
+2. create/update  CSSOM: CSS 文件下载完成，开始构建CSSOM;
+3. create/update  render tree;
+4. Layout;
+5. painting;
+
+js文件不会影响首屏出现时间，但会阻断DOMcontentLoad从而影响后面部分显示，所以script放在body最后较好。
+
