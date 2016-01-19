@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html  lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" Content="text/html; charset=utf-8">
+	<title>test</title>
+	<style type="text/css">
+		#outer {
+			width: 500px;
+			height: 500px;
+			margin: 20px;
+			padding: 20px;
+			border: 10px solid black;
+			background-color: red;
+		}
+		#inner {
+			width: 200px;
+			height: 200px;
+			margin: 20px;
+			padding: 20px;
+			border:  10px solid black;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="outer">
+		<div id="inner" class="inner-add2">
+		</div>
+	</div>
+	<div id="outer2">
+		
+	</div>
+	<script type="text/javascript">
+		var ele = document.getElementById("inner");
+		console.log("left:" + ele.offsetLeft + " top:" + ele.offsetTop);
+		console.log(ele.offsetWidth);
+		console.log(ele.clientWidth);
+	</script>
+</body>
+</html>

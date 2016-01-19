@@ -1,0 +1,10 @@
+2016.1.19
+1.	offsetWidth和offsetHeigth包括边框和内边框和内容（clientWidth和clientHeigth不包含边框）
+	offsetTop offsetLeft 指的是边框到父元素的外边框的距离
+
+2. 可以通过正则表达式来检测class中是否含有所要寻找的类
+	可以用replace（reg，__）移除想要移除的类
+
+3. DOM节点：firstChild lastChild childNodes[ ] document.documentElement 
+			nextSibling previousSlbling 
+
