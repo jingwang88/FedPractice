@@ -8,3 +8,12 @@
 3. DOM节点：firstChild lastChild childNodes[ ] document.documentElement 
 			nextSibling previousSlbling 
 
+4. 	window.innerHeight window.innerWidth window.outterHeight window.outterWidth
+	document.documentElement.clientHeight 	document.body.clientHeight
+
+	screenLeft screenTop (IE safri opera chrome)
+	screenX screenY(safri chrome )(opera 不与screenLeft screenTop对应)
+	
+	for(var i=0; i<navigator.plugins.length; i++) {
+		console.log(navigator.plugins[i].name + ":" + navigator.plugins[i].description +  ":" + navigator.plugins[i].filename);
+	}
