@@ -163,3 +163,53 @@ $("[data-time=2015]"); // 返回第一个包含属性data-time且值为2015的�
 // 可以通过简单的组合提高查询便利性，例如
 $("#adom .classa"); // 返回id为adom的DOM所包含的所有子节点中，第一个样式定义包含classa的对象
 
+
+
+/*---------------------- 事件 -----------------------*/
+// 给一个element绑定一个针对event事件的响应，响应函数为listener
+function addEvent(element, event, listener) {
+     element.addEventListener(event, listener);
+}
+
+// 百度页面https://www.baidu.com/s?wd=addeventlistener&ie=utf-8&tn=98050039_pg&ssl_s=1&ssl_c=ssl6_152646d03b9
+function mouseoverlistener(event) {
+    alert("onevent");
+}
+
+addEvent(document.getElementById("s_tab"), "mouseover", mouseoverlistener);
+
+// 移除element对象对于event事件发生时执行listener的响应
+function removeEvent(element, event, listener) {
+    // your implement
+     element.removeEventListener(event, listener);
+}
+
+// 测试
+removeEvent(document.getElementById("s_tab"), "mouseover", mouseoverlistener);
+
+// 实现对click事件的绑定
+function addClickEvent(element, listener) {
+    // your implement
+    element.onclick = listener;
+}
+
+// 实现对于按Enter键时的事件绑定
+function addEnterEvent(element, listener) {
+    // your implement
+    element.onkeypress = function(event) {
+        console.log("111");
+        if(event.charCode == 0x0D || event.keyCode == 0x0D) {
+            listener(event);
+        }else{
+            console.log("按下的不是enter键");
+        }
+    } 
+}
+
+// 测试addEnterEvent() http://www.uc123.com/
+function enterListener(event) {
+    console.log("enter!"+event);
+}
+addEnterEvent(document.getElementById("search_keyword"), enterListener);
+
+
