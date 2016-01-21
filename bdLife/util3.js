@@ -66,7 +66,35 @@ console.log(innerPose.y);
 
 /*--------------- 实现简单$ -------------*/
 // 实现一个简单的Query
-
+function $1(selector) {
+    var regId = /^#(\w+)$/g, regClass = /^.(\w+)$/g, regTag = /^(\w+)$/g,
+            regAttr = /^\[(([0-9a-zA-z]|-)+)\]$/g, regAttrVal = /^[(.+)=(.+)]$/g;
+        if(regId.test(selector)) {
+            return document.getElementById($1);
+        }else if(regClass.test(selector)) {
+            return document.getElementsByClassName($1);
+        }else if(regTag.test(selector)) {
+            return document.getElementsByTagName($1);
+        }else if(regAttr.test(selector)) {
+            var nodeList = document.getElementsByTagName('*');
+            var nodeArr = [];
+            for(var i=0, ele; ele=nodeList[i]; i++) {
+                if(ele.getAttribute($1)) {
+                    nodeArr.push(ele);
+                }
+            }
+            return nodeArr;
+        }else if(regAttrVal.test(selector)) {
+            var nodeList = document.getElementsByTagName('*');
+            var nodeArr = [];
+            for(var i=0, ele; ele=nodeList[i]; i++) {
+                if(ele.getAttribute($1) == $2) {
+                    nodeArr.push(ele);
+                }
+            }
+            return nodeArr;
+        }
+}
 function $(selector) {
     var selectors = selector.split(' ');
     if(selectors.length<2) {
@@ -98,13 +126,16 @@ function $(selector) {
             return nodeArr[0];
         }
     }else {
-        function(selectors) {
-            for(var i=selectors.length; i>1; i--) {
-                if($(selectors[i-1]).parentNode == $(selectors[i-2]) && i == 2) {
-                    return $(selectors[selectors.length-1]);
+        var eles = [];
+        for(var childEle in $1(selectors[1])) {
+            for(var parentEle in $1(selectors[0])) {
+                if(childEle.parentNode == parentEle) {
+                    eles.push(childEle);
                 }
             }
         }
+        return eles[0]; 
+        
     }
 }
 //使用微博首页测试
@@ -113,7 +144,7 @@ console.log($(".W_f14"));
 console.log($("p"));
 console.log($("[fixed-box]"));
 console.log($("[fixed-box=true]"));
-
+console.log($(".layer_menu_list ul"));
 
 // 可以通过id获取DOM对象，通过#标示，例如
 $("#adom"); // 返回id为adom的DOM对象
