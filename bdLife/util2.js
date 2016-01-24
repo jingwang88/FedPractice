@@ -12,7 +12,7 @@ function isEmail(emailStr) {
 
 function isMobilePhone(phone) {
     // your implement
-    var phoneNumReg = /1[0-9][0-9]{9}/g;
+    var phoneNumReg = /^1[3458][0-9]{9}$/g;
      return phoneNumReg.test(phone);
 }
 console.log("is email?");
@@ -24,5 +24,8 @@ console.log("is phone?");
 console.log(isMobilePhone("18565756598"));
 console.log(isMobilePhone("1856575655598"));
 console.log(isMobilePhone("1856575658"));
+console.log(isMobilePhone("13565575658"));
+console.log(isMobilePhone("14565575658"));
+console.log(isMobilePhone("15565575658"));
 console.log(isMobilePhone("12565756598"));
 console.log(isMobilePhone("22565756598"));

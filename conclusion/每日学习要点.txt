@@ -1,4 +1,5 @@
 2016.1.19
+
 1.	offsetWidth和offsetHeigth包括边框和内边框和内容（clientWidth和clientHeigth不包含边框）
 	offsetTop offsetLeft 指的是边框到父元素的外边框的距离
 
@@ -17,3 +18,7 @@
 	for(var i=0; i<navigator.plugins.length; i++) {
 		console.log(navigator.plugins[i].name + ":" + navigator.plugins[i].description +  ":" + navigator.plugins[i].filename);
 	}
+
+
+2016.1.24 
+1.节点对象的tagName属性为大写 document.getElementById("").tagName

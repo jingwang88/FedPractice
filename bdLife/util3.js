@@ -168,7 +168,7 @@ $("#adom .classa"); // 返回id为adom的DOM所包含的所有子节点中，第
 /*---------------------- 事件 -----------------------*/
 // 给一个element绑定一个针对event事件的响应，响应函数为listener
 function addEvent(element, event, listener) {
-     element.addEventListener(event, listener);
+    element.addEventListener(event, listener);
 }
 
 // 百度页面https://www.baidu.com/s?wd=addeventlistener&ie=utf-8&tn=98050039_pg&ssl_s=1&ssl_c=ssl6_152646d03b9
@@ -196,7 +196,8 @@ function addClickEvent(element, listener) {
 // 实现对于按Enter键时的事件绑定
 function addEnterEvent(element, listener) {
     // your implement
-    element.onkeypress = function(event) {
+    
+   element.onkeypress = function(event) {
         console.log("111");
         if(event.charCode == 0x0D || event.keyCode == 0x0D) {
             listener(event);
@@ -213,3 +214,92 @@ function enterListener(event) {
 addEnterEvent(document.getElementById("search_keyword"), enterListener);
 
 
+
+/*------------------事件委托------------------*/
+// 先简单一些
+
+function delegateEvent(element, tag, eventName, listener) {
+    // your implement
+    element.addEventListener(eventName, function(){
+        // console.log(event.target.tagName.toLowerCase());
+        // tagName为大写字母，因此需要变为小写
+        if(event.target.tagName.toLowerCase() == tag) {
+         console.log("click");
+            listener();
+        }
+    } );
+}
+
+$.delegate = delegateEvent;
+function clickHandle() {
+    alert("clickhandle");
+}
+// 使用示例 http://www.uc123.com/
+// 还是上面那段HTML，实现对list这个ul里面所有li的click事件进行响应
+$.delegate(document.getElementById("J_search"), "li", "mouseover", clickHandle);
+
+
+/*------------------ 重新封装 --------------------*/
+
+$.on(selector, event, listener) {
+    $1(selector).addEventListener(event, listener);
+}
+
+$.click(selector, listener) {
+    // your implement
+    $1(selector).onclick = listener;
+}
+
+$.un(selector, event, listener) {
+    // your implement
+    $1(selector).removeEventListener(event, listener);
+}
+
+$.delegate(selector, tag, event, listener) {
+    // your implement
+    $1(selector).addEventListener(eventName, function(){
+        // console.log(event.target.tagName.toLowerCase());
+        // tagName为大写字母，因此需要变为小写
+        if(event.target.tagName.toLowerCase() == tag) {
+         console.log("click");
+            listener();
+        }
+    } );
+}
+
+// 使用示例：
+$.click("[data-log]", logListener);
+$.delegate('#list', "li", "click", liClicker);
+
+
+/*-------------------- BOM ---------------------*/
+// 判断是否为IE浏览器，返回-1或者版本号
+function isIE() {
+    // your implement
+    if(navigator.userAgent.match(new RegExp(".*MSIE.*"))){
+        return true;
+    }else {
+        return false;
+    }
+}
+console.log(isIE());
+
+// 设置cookie
+function setCookie(cookieName, cookieValue, expiredays) {
+    // your implement
+    var d = new Date();
+    d.setHours(d.getHours() + expiredays*24);
+    document.cookie = "expires="+d.toGMTString();
+    document.cookie = document.cookie+cookieName+"="+cookieValue+";"
+}
+setCookie("wangjing", "jingwang", 10);
+
+// 获取cookie值
+function getCookie(cookieName) {
+    // your implement
+    var reg = new RegExp(".*"+cookieName+"=(\\w+);.*");
+    if(reg.test(document.cookie)) {
+        return "$1";
+    }
+}
+console.log(getCookie("isg"));
