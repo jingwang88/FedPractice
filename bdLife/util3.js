@@ -276,7 +276,9 @@ $.delegate('#list', "li", "click", liClicker);
 // 判断是否为IE浏览器，返回-1或者版本号
 function isIE() {
     // your implement
-    if(navigator.userAgent.match(new RegExp(".*MSIE.*"))){
+    var reg = /.*MSIE.*/g;
+    console.log(navigator.userAgent);
+    if(reg.test(navigator.userAgent)){
         return true;
     }else {
         return false;
@@ -289,17 +291,22 @@ function setCookie(cookieName, cookieValue, expiredays) {
     // your implement
     var d = new Date();
     d.setHours(d.getHours() + expiredays*24);
-    document.cookie = "expires="+d.toGMTString();
-    document.cookie = document.cookie+cookieName+"="+cookieValue+";"
+    // d.setTime(d.getTime() + expiredays*24*3600*1000);
+    // d.setDate(d.getDate() + expiredays);    
+    document.cookie = cookieName+"="+cookieValue+";expires="+d.toGMTString()+";";
 }
-setCookie("wangjing", "jingwang", 10);
+setCookie("test", "testValue", 10);
 
 // 获取cookie值
 function getCookie(cookieName) {
     // your implement
-    var reg = new RegExp(".*"+cookieName+"=(\\w+);.*");
-    if(reg.test(document.cookie)) {
-        return "$1";
+    var cookies = document.cookie.split(";");
+    for(var i=0; i<cookies.length; i++) {
+        var cookiesEach = cookies[i].split("=");
+        if(cookieName == cookiesEach[0]) {
+           console.log(cookiesEach[1]);
+           break;
+        }
     }
 }
-console.log(getCookie("isg"));
+getCookie("test");
