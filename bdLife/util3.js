@@ -303,10 +303,66 @@ function getCookie(cookieName) {
     var cookies = document.cookie.split(";");
     for(var i=0; i<cookies.length; i++) {
         var cookiesEach = cookies[i].split("=");
-        if(cookieName == cookiesEach[0]) {
+        // cookie每队值之间有空格
+        if(cookiesEach[0].trim() == cookieName) {
            console.log(cookiesEach[1]);
            break;
         }
     }
 }
-getCookie("test");
+// 测试用新浪微博cookie
+getCookie("un");
+
+/*------------ AJAX --------------*/
+// 
+function ajax(url, options) {
+    var xmlhttp;
+    if(window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    }else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.open(options.type, url, true);
+    xmlhttp.send("name="+options.data.name+"&password="+options.data.password);
+    //xmlhttp.responseXML or xmlhttp.responseText
+    xmlhttp.onReadyStatechange = function() {
+        if(xmlhttp.readyState == 4) {
+            if(xml.status == 200) {
+                options.onsuccess(xmlhttp.responseText);
+            }else {
+                if(xml.status == 404) {
+                    options.onfail();
+                }
+            }
+        }
+    }
+}
+/*
+xmlhttp = new XMLHttpRequest() or new ActiveObject("Microsoft.XMLHTTP")
+xmlhttp.open(method, url, true)
+xmlhttp.send(string)
+xmlhttp.responseXML or xmlhttp.responseText
+xmlhttp.onReadyStatechange
+xmlhttp.readyState 0：请求初始化 1：服务器已建立 2：请求已接收 3：请求处理中 4：请求已完成，且响应已就绪
+xmlhttp.status 200 :"ok"    404 : "未找到页面"
+
+*/
+// 使用示例：
+ajax(
+    'http://localhost:8080/server/ajaxtest', 
+    {   
+        type: 'post',
+        data: {
+            name: 'simon',
+            password: '123456'
+        },
+        onsuccess: function (responseText, xhr) {
+            console.log(responseText);
+        },
+        onfail: function() {
+
+        }
+    }
+);

@@ -22,3 +22,15 @@
 
 2016.1.24 
 1.节点对象的tagName属性为大写 document.getElementById("").tagName
+
+2016.11.26
+AJAX 
+xmlhttp = new XMLHttpRequest() or new ActiveObject("Microsoft.XMLHTTP")
+xmlhttp.open(method, url, true)
+xmlhttp.send(string)
+xmlhttp.responseXML or xmlhttp.responseText
+xmlhttp.onReadyStatechange
+xmlhttp.readyState 0：请求初始化 1：服务器已建立 2：请求已接收 3：请求处理中 4：请求已完成，且响应已就绪
+xmlhttp.status 200 :"ok"    404 : "未找到页面"
+
+
