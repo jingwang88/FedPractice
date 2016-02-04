@@ -293,7 +293,7 @@ function setCookie(cookieName, cookieValue, expiredays) {
     d.setHours(d.getHours() + expiredays*24);
     // d.setTime(d.getTime() + expiredays*24*3600*1000);
     // d.setDate(d.getDate() + expiredays);    
-    document.cookie = cookieName+"="+cookieValue+";expires="+d.toGMTString()+";";
+    document.cookie = cookieName+"="+cookieValue+"; expires="+d.toGMTString()+";";
 }
 setCookie("test", "testValue", 10);
 

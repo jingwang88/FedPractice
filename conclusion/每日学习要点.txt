@@ -23,7 +23,7 @@
 2016.1.24 
 1.节点对象的tagName属性为大写 document.getElementById("").tagName
 
-2016.11.26
+2015.11.26
 AJAX 
 xmlhttp = new XMLHttpRequest() or new ActiveObject("Microsoft.XMLHTTP")
 xmlhttp.open(method, url, true)
@@ -34,3 +34,21 @@ xmlhttp.readyState 0：请求初始化 1：服务器已建立 2：请求已接�
 xmlhttp.status 200 :"ok"    404 : "未找到页面"
 
 
+2016.2.2
+1.typeof 与 instanceof ：
+	typeof 检测引用类型不行，是检测基本类型的得力助手，null或对象会返回object；
+	chrome7-、safari5- typeof正则表达式返回function；
+	ie、firefox返回object；
+	instanceof 检测引用类型。
+
+2016.2.3
+环境：执行环境。
+1.javascript没有块级作用域在if（）{} for（）{}中定义的变量会出现在全局作用域；
+2.在函数中使用var定义变量会使该变量在当前函数环境变量对象中，没有使用var定义则在全局环境变量对象中；
+3.垃圾收集：
+	a.标记清除mark and sweep
+	b.引用计数
+	c.垃圾收集是周期性工作，不同浏览器有不同的触发方法
+	d.管理内存，一旦数据不再用最好置为null，解除引用dereferening，这种做法适用于全局变量和全局对象，局部变量会在离开它执行环境时自动被解除。
+4.Array引用类型方法：slice（ar1，ar2）截取ar1起始位置 ar2结束位置 splice（ar1,ar2，。。。。。）ar1起始位置，
+ar2删除数量，后面参数：要代替进入的，indexOf（），迭代方法：every() some() filter() map() forEach() 
