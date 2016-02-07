@@ -36,7 +36,7 @@ window.onload = function() {
 	var frm = document.getElementById("form");
 	var p = document.createElement("p");
 	// unicode: 空格半角\20全角\u3000; 中文逗号\uFF0C; 英文逗号半角(\2C)全角\uFF0C;(有问题)
-	var regSplit = /\n|\u3000| |\uFF0C|,|、|;|；/g;
+	var regSplit = /\n|\u3000|\u0020|\uFF0C|\u002c|、|;|；/g;
 	frm.appendChild(p);
 	button1.onclick = function() {
 		var value = inputEle.value;

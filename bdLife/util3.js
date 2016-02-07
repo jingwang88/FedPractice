@@ -366,3 +366,5 @@ ajax(
         }
     }
 );
+var frame = document.getElementById("fastpostiframe");
+coonsole.log(frame);
