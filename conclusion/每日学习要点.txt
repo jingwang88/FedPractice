@@ -52,3 +52,54 @@ xmlhttp.status 200 :"ok"    404 : "未找到页面"
 	d.管理内存，一旦数据不再用最好置为null，解除引用dereferening，这种做法适用于全局变量和全局对象，局部变量会在离开它执行环境时自动被解除。
 4.Array引用类型方法：slice（ar1，ar2）截取ar1起始位置 ar2结束位置 splice（ar1,ar2，。。。。。）ar1起始位置，
 ar2删除数量，后面参数：要代替进入的，indexOf（），迭代方法：every() some() filter() map() forEach() 
+
+2016.2.6
+1.javascript对iframe的DOM操作
+	function getIframeDom() {
+		return document.getElementByID(ID).contentDocument || document.frames[id].document;
+	}
+
+2016.2.8
+1.nodeType nodeValue nodeName 
+2.createElement createTextNode cloneNode(bool是否克隆子节点) appendChild createDocumentFragment
+	createDocumentFragment
+	createDocumentFragment方法用来创建一个DocumentFragment。在前面我们说到DocumentFragment表示一种轻量级的文档，它的作用主要是存储临时的节点用来准备添加到文档中。
+	createDocumentFragment方法主要是用于添加大量节点到文档中时会使用到。假设要循环一组数据，然后创建多个节点添加到文档中，比如示例
+	<ul id="list"></ul>
+	<input type="button" value="添加多项" id="btnAdd" />
+
+	document.getElementById("btnAdd").onclick = function(){
+		var list = document.getElementById("list");
+		for(var i = 0;i < 100; i++){
+			var li = document.createElement("li");
+			li.textContent = i;
+			list.appendChild(li);
+		}
+	}
+	这段代码将按钮绑定了一个事件，这个事件创建了100个li节点，然后依次将其添加HTML文档中。这样做有一个缺点：每次一创建一个新的元素，然后添加到文档树中，这个过程会造成浏览器的回流。所谓回流简单说就是指元素大小和位置会被重新计算，如果添加的元素太多，会造成性能问题。这个时候，就是使用createDocumentFragment了。
+
+	DocumentFragment不是文档树的一部分，它是保存在内存中的，所以不会造成回流问题。我们修改上面的代码如下：
+	document.getElementById("btnAdd").onclick = function(){
+		var list = document.getElementById("list"); 
+		var fragment = document.createDocumentFragment();
+
+		for(var i = 0;i < 100; i++){
+		  var li = document.createElement("li");
+			li.textContent = i;
+			fragment.appendChild(li);
+		}
+
+		list.appendChild(fragment);
+	}
+	优化后的代码主要是创建了一个fragment，每次生成的li节点先添加到fragment，最后一次性添加到list，大家可以看示例
+    //获取函数名
+    function getFunctionName(fn) {
+        if(fn.name) {
+            return fn.name;
+        }else {
+            var str = fn.toString();
+            str = str.subStr('function '.length);
+            str = str.subStr(0,str.indexOf('('));
+            return str;
+        }
+    }

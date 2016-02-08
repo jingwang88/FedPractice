@@ -4,12 +4,33 @@
 	<meta charset="utf-8">
 	<title>练习1</title>
 	<script type="text/javascript" src="./js/task002_1.js"></script>
+	<style type="text/css">
+		span {
+			font-size: 15px;
+			color: red;
+			display: block;
+		}
+		#alert1 {
+			display: block;
+		}
+		#alert2 {
+			display: none;
+		}
+		#btn {
+			display: block;
+		}
+	</style>
 </head>
 <body>
 	<form id="form"> 
 		<!-- <input type="text" id="favor"/> -->
 		<textarea id="favor" style="width:400px; height: 150px; font-size:20px;"></textarea>
-		<input type="button" value="提交" id="btn" />	
+		<span id="alert1">请输入您的兴趣!</span>
+		<span id="alert2">您输入的兴趣超过了10个!</span>
+		<input type="button" value="提交" id="btn" />
+		<div id="checkbox">
+
+		</div>	
 	</form>
 </body>
 </html>
