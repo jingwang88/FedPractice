@@ -7,10 +7,10 @@ window.onload = function() {
 	btn.onclick = function() {
 		clearInterval(timeId);
 		var toTime = document.getElementById("toTime").value;
-		if(formatReg.test(toTime)) {
+		if (formatReg.test(toTime)) {
 			var time = toTime.split('-');
 			var forwardTime = new Date(time[0], time[1]-1, time[2], 0, 0, 0);
-			var update = function(){
+			var update = function() {
 				console.log("aaaa");
 				var date = new Date();
 				var result = forwardTime - date;
@@ -21,7 +21,7 @@ window.onload = function() {
 				var minutes = parseInt(temp/(60*1000));
 				temp = temp%(60*1000);
 				var seconds = parseInt(temp/1000);
-				if(seconds>=0) {
+				if (seconds>=0) {
 					for(var i=0; i<3; i++) {
 						spans[i].innerText = time[i];
 					}
@@ -32,7 +32,7 @@ window.onload = function() {
 				}else {
 					clearInterval(now);
 				}
-			}
+			};
 			timeId = setInterval(update, 1000);
 		}
 	}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>练习2-轮播图</title>
+	<script type="text/javascript" src="./js/task002_.js"></script>
+	<style type="text/css">		
+		#showWindow {
+			width: 1000px;
+			height: 500px;
+			margin: 15px auto;
+			overflow: hidden;
+			position: relative;
+		}
+		#container {
+			width: 4000px;
+			height: 500px;
+			position: relative;
+			left: 0px;
+			z-index: 2;
+		}
+		#container:after {
+			content: "";
+			display: block;
+			width: 0;
+			clear: both;
+		}
+		.pic-Container {
+			width: 1000px;
+			height: 500px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			float: left;
+		}
+		.pic-Container img{
+			width: 100%;
+			height: 100%;
+		}
+		#circleTag {
+			position: absolute;
+			left: 43%;
+			top: 90%;
+			z-index: 3;
+		}
+		#circleTag span {
+			width: 10px;
+			height: 10px;
+			display: inline-block;
+			margin-left: 15px;
+			border: 1px solid black;
+			border-radius: 100%
+		}
+	</style>
+</head>
+<body>
+	<form>
+		<input type="checkbox" id="isLoop"><span>循环</span>
+		<input type="checkbox" id="leftToRight"><span>正序</span>
+		<span>间隔时间</span><input type="text" id="gapTime"> 
+	</form>
+	<div id="showWindow">
+		<div id="container">
+			<div class="pic-Container" id="firstPic">
+				<img src="./src/pic01.jpg"/>
+			</div>
+			<div class="pic-Container">
+				<img src="./src/pic02.jpg"/>
+			</div>
+			<div class="pic-Container"> 
+				<img src="./src/pic03.jpg"/>
+			</div>
+			<div class="pic-Container">
+				<img src="./src/pic04.jpg"/>	
+			</div>	
+		</div>
+	</div>
+	<div id="circleTag">
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>	
+</body>
+</html>
