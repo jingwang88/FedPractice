@@ -62,7 +62,7 @@ ar2删除数量，后面参数：要代替进入的，indexOf（），迭代方�
 2016.2.8
 1.nodeType nodeValue nodeName 
 2.createElement createTextNode cloneNode(bool是否克隆子节点) appendChild createDocumentFragment
-	createDocumentFragment
+	createDocumentFragment 
 	createDocumentFragment方法用来创建一个DocumentFragment。在前面我们说到DocumentFragment表示一种轻量级的文档，它的作用主要是存储临时的节点用来准备添加到文档中。
 	createDocumentFragment方法主要是用于添加大量节点到文档中时会使用到。假设要循环一组数据，然后创建多个节点添加到文档中，比如示例
 	<ul id="list"></ul>
@@ -103,3 +103,15 @@ ar2删除数量，后面参数：要代替进入的，indexOf（），迭代方�
             return str;
         }
     }
+
+
+2016.2.21
+css隐藏元素的几种方法，最常见的是下面几种：
+1.display:none,通过这种方法元素会从页面中消失并且原占有的空间会被其它元素占有，这就会导致repaint和reflow。
+（reflow and repaint http://www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/）
+2.visibility:none,元素会从页面中消失但占有的空间还是存在；
+3.opacity:0,元素并没有消失只是完全透明了看不见而已；
+4.将元素的盒子高度、边框、填充全部设置为0并且overflow：hidden。
+不常见：
+1.将z-index设置成负数
+2.将元素设置到界面外。等等
