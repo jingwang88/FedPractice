@@ -18,6 +18,8 @@
 			position: relative;
 			left: 0px;
 			z-index: 2;
+			list-style-type: none;
+			padding: 0px;
 		}
 		#container:after {
 			content: "";
@@ -60,20 +62,20 @@
 		<span>间隔时间</span><input type="text" id="gapTime"> 
 	</form>
 	<div id="showWindow">
-		<div id="container">
-			<div class="pic-Container" id="firstPic">
+		<ul id="container">
+			<li class="pic-Container" id="firstPic">
 				<img src="./src/pic01.jpg"/>
-			</div>
-			<div class="pic-Container">
+			</li>
+			<li class="pic-Container">
 				<img src="./src/pic02.jpg"/>
-			</div>
-			<div class="pic-Container"> 
+			</li>
+			<li class="pic-Container"> 
 				<img src="./src/pic03.jpg"/>
-			</div>
-			<div class="pic-Container">
+			</li>
+			<li class="pic-Container">
 				<img src="./src/pic04.jpg"/>	
-			</div>	
-		</div>
+			</li>	
+		</ul>
 	</div>
 	<div id="circleTag">
 		<span></span>
