@@ -34,7 +34,7 @@ window.onload = function() {
 					var distance = (i+1)*showWindowWidth - left;
 					if(distance > 0) {
 						var t1 = setInterval(function() {
-							left += 2;
+							left += 10;
 							container.style.left = '-' + left + 'px';
 							if (left > (i+1)*showWindowWidth) {
 								clearInterval(t1);
@@ -57,7 +57,7 @@ window.onload = function() {
 		});
 	};
 	if(options.loop) { 
-		clickMonitor();
+		//clickMonitor();
 		if(!options.leftToRight) {
 			console.log('aa');
 			var left = 0;

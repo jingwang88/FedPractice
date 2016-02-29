@@ -44,7 +44,7 @@
 			top: 90%;
 			z-index: 3;
 		}
-		#circleTag span {
+		#circleTag a {
 			width: 10px;
 			height: 10px;
 			display: inline-block;
@@ -63,25 +63,25 @@
 	</form>
 	<div id="showWindow">
 		<ul id="container">
-			<li class="pic-Container" id="firstPic">
+			<li class="pic-Container" name="first">
 				<img src="./src/pic01.jpg"/>
 			</li>
-			<li class="pic-Container">
+			<li class="pic-Container" name="second">
 				<img src="./src/pic02.jpg"/>
 			</li>
-			<li class="pic-Container"> 
+			<li class="pic-Container" name="third"> 
 				<img src="./src/pic03.jpg"/>
 			</li>
-			<li class="pic-Container">
+			<li class="pic-Container" name="fourth">
 				<img src="./src/pic04.jpg"/>	
 			</li>	
 		</ul>
 	</div>
 	<div id="circleTag">
-		<span class="tag"></span>
-		<span class="tag"></span>
-		<span class="tag"></span>
-		<span class="tag"></span>
+		<a class="tag" href="#first"></a>
+		<a class="tag" href="#second"></a>
+		<a class="tag" href="#third"></a>
+		<a class="tag" href="#fourth"></a>
 	</div>	
 </body>
 </html>
