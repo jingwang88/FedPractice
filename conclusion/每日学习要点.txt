@@ -115,3 +115,56 @@ css隐藏元素的几种方法，最常见的是下面几种：
 不常见：
 1.将z-index设置成负数
 2.将元素设置到界面外。等等
+
+
+2016.2.29
+js监听input等表单输入框的变化事件oninput，手机页面开发中使用到文本框textarea输入字符监听文本框变化计算还可以输入多少字符，如果使用onkeyup的话是无法监听到输入法输入的文本变化的，复制粘贴也不能监听到，于是就用到了oninput事件来监听文本框value值的改变。由于是手机端页面没有考虑IE 这货。
+
+js代码如下：
+
+//计算文本输入统计
+(function textCoun(textarea,num){
+    var sendTextarea     =     document.getElementById(textarea),
+        text            =    sendTextarea.value,
+        counter            =    text.length,
+        sendCount         =     document.getElementById("send-count");
+    
+    sendCount.innerHTML = num-counter;    //显示初始状态还属于多少字
+    
+    //输入以后重新计算
+    sendTextarea.oninput = function(){
+        text    =    sendTextarea.value,
+        counter    =    text.length;
+        sendCount.innerHTML = num-counter;
+    }
+
+})("send-textarea",110)
+
+关于这个事件的更多知识，可以阅读下面的文字，我们感谢写下下面文字的兄弟。懒人建站整理。
+
+oninput,onpropertychange,onchange的用法
+
+onchange触发事件必须满足两个条件：
+
+a）当前对象属性改变，并且是由键盘或鼠标事件激发的（脚本触发无效）
+
+b）当前对象失去焦点(onblur)； 
+
+onpropertychange的话，只要当前对象属性发生改变，都会触发事件，但是它是IE专属的；       
+
+oninput是onpropertychange的非IE浏览器版本，支持firefox和opera等浏览器，但有一点不同，它绑定于对象时，并非该对象所有属性改变都能触发事件，它只在对象value值发生改变时奏效。
+
+停止冒泡事件
+
+if (e) //停止事件冒泡 e.stopPropagation(); 
+
+else  window.event.cancelBubble = true;
+
+执行上面的代码，单击输入框发现也会触发onpropertychange，输入一个值同样也会触发这个事件，这就证明了，只要有属性的值被修改就会触发该事件。
+
+第二、既然我们发现了这个特点，那就会有一个问题了：当我们有时在输入框值发生改变时希望执行一个函数操作，但同时也要修改一个自定义的属性，这样onpropertychange就会被触发两次，这个可能并不是我们所希望的。
+猜想一下，既然提供了这么一个属性，那一定应该能获取到是哪个属性被改变了。试着获取参数个数及参数内容。
+
+
+2016.3.10
+call apply bind 三种方法的区别 （http://developer.51cto.com/art/201503/466978.htm）

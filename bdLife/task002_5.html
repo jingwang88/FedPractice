@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>task5-界面拖拽交互</title>
+	<script type="text/javascript" src="./js/task002_5.js"></script>
+	<style type="text/css">
+		body {
+			text-align: center;
+		}
+		#container {
+			width: 100%;
+			margin: 100px auto;
+		}
+		ul {
+			display: inline-block;
+			width: 200px;
+			height: 600px;
+			border: 1px solid black;
+			list-style: none;
+			padding: 0px;
+		}
+		li {
+			display: block;
+			height: 50px;
+			width: 100%;
+			background-color: red;
+			border: 1px solid black;
+		}
+		ul#leftContainer {
+			margin-right: 50px;
+		}
+		ul#rightContainer {
+			margin-left: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<ul id="leftContainer">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>		
+		<ul id="rightContainer">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>						
+	</div>
+</body>
+</html>
