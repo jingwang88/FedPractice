@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<title>孔明科技测试</title>
+	<style type="text/css">
+		.regist {
+
+		}
+		.info {
+			display: block;
+			height: 20px;
+		}
+	</style>
+	<script type="text/javascript">
+
+		function makeRequest () {
+			var xmlFlag = false;
+			if (window.XMLHttpRequest) {
+				http_request = new XMLHttpRequest();
+				xmlFlag = true;
+				if (http_request.overrideMimeType) {
+					http_request.overrideMimeType("text/xml");
+				}
+			} else {
+				try {
+					xmlFlag = true;
+					http_request = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {
+					xmlFlag = false;
+					try {
+						xmlFlag = true;
+						http_request = new ActiveXObject();
+					} catch (error) {
+						console.log(error);
+					}
+				}
+			}
+			if (!xmlFlag) {
+				console("创建XMLHttpRequest失败！");
+				return false;
+			}
+			switch (arguments.length) {
+				case 3:
+					http_request.onreadystatechange = handleRegister;
+					http_request.open("POST", " http://z005.kmtongji.com/api/register", true);
+					http_request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					console.log("username="+arguments[0]+"&nick="+arguments[1]+"&password="+arguments[2]);
+					http_request.send("username="+arguments[0]+"&nick="+arguments[1]+"&password="+arguments[2]);
+					break;
+				case 2:
+					http_request.onreadystatechange= handleLogIn;
+					http_request.open("POST", "http://z005.kmtongji.com/api/login", true);
+					http_request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					http_request.send("username="+arguments[0]+"&password="+arguments[1]);
+					break;
+				case 1:
+					http_request.onreadystatechange= changePW;
+					http_request.open("POST", "http://z005.kmtongji.com/api/users/setPassword", true);
+					http_request.send("password="+arguments[0]);
+					break;
+				case 0:
+					http_request.onreadystatechange= logStatus;
+					http_request.open("GET", "http://z005.kmtongji.com/api/users", true);
+					http_request.send();
+					break;
+
+			}
+			
+		}
+		function handleRegister() {
+			if (http_request.readyState == 4) {
+				if (http_request.status == 200) {
+					var text = http_request.responseText.slice(1, -1);
+					var messages = text.split(",");
+					console.log(messages[1].split(":")[1]);
+					if (messages[1].split(":")[1].slice(1, -1) === "A user with the given username is already registered") {
+						alert("用户名被已经注册");
+					} else {
+						alert("注册成功");
+					}
+				}
+			}
+		}
+		function handleLogIn() {
+			if (http_request.readyState == 4) {
+				if (http_request.status == 200) {
+					alert("登陆成功");
+				} else {
+					alert("登陆失败");
+				}
+			}
+		}
+		function logStatus() {
+			if (http_request.readyState == 4) {
+				if (http_request.status == 200) {
+					console.log(http_request.responseText);
+				}
+			}
+		}
+		function changePW() {
+			if (http_request.readyState == 4) {
+				if (http_request.status == 200) {
+					console.log(http_request.responseText);
+				}
+			}
+		}
+		function testEmail (email) {
+			return /^[a-zA-Z0-9]+@[a-zA-Z0-9]+.com$/.test(email);
+ 		}
+		window.onload = function () {
+			var submit = document.querySelectorAll(".sub");
+			var email = document.querySelectorAll(".email");
+			var nick = document.querySelector(".nick");
+			var password = document.querySelectorAll(".password");			
+			var emailInfo = document.querySelectorAll(".emailInfo");
+			function checkEmail(email, emailInfo) {
+				if (testEmail(email.value)) {
+					email.style.border = "1px solid black"
+					emailInfo.innerText = "";
+					emailInfo.style.color = "";
+				} else if (email.value.length == 0) {
+					email.style.border = "1px solid red"
+					emailInfo.innerText = "邮箱不能为空";
+					emailInfo.style.color = "red";
+				} else {
+					email.style.border = "1px solid red"
+					emailInfo.innerText = "邮箱格式错误";
+					emailInfo.style.color = "red";
+				}
+			}
+			email[0].oninput = function() {checkEmail(email[0], emailInfo[0])};
+			email[1].oninput = function() {checkEmail(email[1], emailInfo[1])};
+			email[2].oninput = function() {checkEmail(email[2], emailInfo[2])};
+			submit[0].onclick = function () {
+				if (emailInfo[0].innerText === "") {
+					makeRequest(email[0].value, nick.value, password[0].value);
+				} else {
+					alert("提交失败！")
+				}
+			}
+			submit[1].onclick = function () {
+				if (emailInfo[1].innerText === "") {
+					makeRequest(email[1].value, password[1].value);
+				} else {
+					alert("邮箱有误");
+				}
+			}
+			submit[2].onclick = function () {
+				if (emailInfo[2].innerText === "") {
+					makeRequest();
+					makeRequest(password[2].value);
+				} else {
+					alert("邮箱有误");
+				}
+			}
+		}
+	</script>
+
+</head>
+<body>
+	<!-- 注册页面 -->
+	<form class="regist">
+		  邮箱：<input type="text" class="email"></input><span class="info emailInfo"></span>
+		  昵称：<input type="text" class="nick"></input><span class="info nickInfo"></span>
+		  密码：<input type="password" class="password"></input><span class="info passwordInfo"></span>
+	</form>
+	<input type="button" value="注册" class="sub"></input>
+	<form class="logIn">
+		邮箱：<input type="text" class="email"></input><span class="info emailInfo"></span>
+		密码：<input type="password" class="password"></input><span class="info passwordInfo"></span>
+	</form>
+	<input type="button" value="登陆" class="sub"></input>
+	<form class="changePW">
+		邮箱：<input type="text" class="email"></input><span class="info emailInfo"></span>
+		新密码：<input type="password" class="password"></input><span class="info passwordInfo"></span>
+	</form>
+	<input type="button" value="修改密码" class="sub"></input>
+</body>
+</html>

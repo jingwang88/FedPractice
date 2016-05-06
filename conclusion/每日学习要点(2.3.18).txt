@@ -1,0 +1,48 @@
+2016.3.18
+1.在IE8当使用png图片作为连接时有默认边框。
+2.IE: attachEvent("on"+type, handler) detachEvent("on"+type, handler)
+  other: addEventListener(type, handler) removeListener(type, handler)
+3. event.srcElment event.target
+4. id选择器一般用作事件钩子； 一般用class和标签就行。
+
+2016.3.23
+1.三种清除浮动方法:
+	a.加空标签然后 clear:both
+	b.overflow: auto/hidden;
+	c.:after {content: " "; display: table/block; clear: both;} 
+		注意在IE6/7中需要在容器添加属性 *zoom: 1;
+2.Ajax 
+	function getXmlHttpRequest() {
+		var xmlhttp = false;
+		if (window.XMLHttpRequest) {
+			xmlhttp = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			try 
+			{
+				xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+			}
+			catch (e) 
+			{
+				try 
+				{
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				catch (e) 
+				{
+					xmlhttp = false;
+				}
+			}
+		}
+
+	}
+	XMLHttpRequest 方法和属性 
+
+
+2016.3.30
+透明度兼容：
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	-webkit-opacity: 0.5;
+	
